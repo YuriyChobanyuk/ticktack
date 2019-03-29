@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "first",
   "main": "index.js",
-  "serve": "gulp imgCopy && gulp jsBuild && gulp cssBuild && gulp htmlBuild && gulp serve",
   "scripts": {
+    "serve": "gulp imgCopy && gulp jsBuild && gulp cssBuild && gulp htmlBuild && gulp serve",
     "test": "test"
   },
   "author": "",

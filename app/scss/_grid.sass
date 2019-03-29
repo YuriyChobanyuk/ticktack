@@ -1,0 +1,28 @@
+.wrapper
+  margin: 0 auto
+  max-width: $content-width
+  padding: 0 $gutter/2
+.row
+  display: flex
+  flex-wrap: wrap
+  margin: 0 $gutter/2*(-1)
+[class*='column']
+  width: 100%
+  padding: 0 $gutter/2
+
+=breakpoint($point)
+  @if $point == desktop
+    @media (min-width: 1170px)
+      @content
+  @else if $point == laptop
+    @media (min-width: 1024px)
+      @content
+  @else if $point == tablet
+    @media (min-width: 768px)
+      @content
+  @else if $point == phablet
+    @media (min-width: 561px)
+      @content
+  @else if $point == mobile
+    @media (max-width: 560px)
+      @content
