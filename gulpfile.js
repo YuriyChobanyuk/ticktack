@@ -10,6 +10,7 @@ const cached = require('gulp-cached');
 var browserify = require('gulp-browserify');
 const sassPartialsImported = require('gulp-sass-partials-imported');
 var pugInheritance = require('gulp-pug-inheritance');
+const babel = require('gulp-babel');
 
 gulp.task('webserver', async function() {
   gulp.src('./dist')
@@ -35,6 +36,10 @@ gulp.task('jsBuild',async function(){
     .pipe(plumberNotifier())
     .pipe(debug())
     .pipe(cached('js'))
+    .pipe(debug())
+    .pipe(babel({
+            presets: ['@babel/env']
+        }))
     .pipe(debug())
     .pipe(browserify({
 

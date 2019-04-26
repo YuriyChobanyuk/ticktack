@@ -29,6 +29,9 @@
     "lodash": "^4.17.11"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "gulp-babel": "^8.0.0",
     "gulp-image-resize": "^0.13.0"
   }
 }
