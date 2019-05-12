@@ -1,9 +1,8 @@
 %interface-btn
   width: 180px
   height: 90px
-  background-image: linear-gradient(#e74a4a, #d64222, rgb(150, 0, 0))
   font-size: 40px
-  color: white
+  color: hsl(254, 93%, 10%)
   margin: auto
   display: flex
   justify-content: center
@@ -11,14 +10,20 @@
   text-transform: uppercase
   border-radius: 10px
   cursor: pointer
-  transition: .2s ease all
+  transition: .3s ease all
   align-self: center
+  background-color: hsl(207, 100%, 50%)
+  opacity: 0.85
 
   &:hover
+    opacity: 0.65
     transform: scale(1.1)
+    background-color: hsl(207, 100%, 80%)
+    color: hsl(250, 50%, 10%)
 
 .start
   @extend %interface-btn
+
 
 .interface
   margin: 15px 0px
