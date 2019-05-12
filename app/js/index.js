@@ -51,7 +51,6 @@ function onStart() {
 function onReset() {
   var reset = document.querySelector('.reset');
   reset.addEventListener('click', function() {
-    document.querySelector('.player ');
     resetScore(player1, true);
     resetScore(player2, true);
     resetGame();
@@ -87,14 +86,16 @@ function initGame() {
   })
 }
 
-function setActiveShield(timeout){
+function setActiveShield(timeout) {
   var shield = document.querySelector('.shield');
   shield.classList.add('shield-active');
-  setTimeout(function(){shield.classList.remove('shield-active')}, timeout);
+  setTimeout(function() {
+    shield.classList.remove('shield-active')
+  }, timeout);
 }
 
 function setActiveBG(init) {
-  if(init){
+  if (init) {
     infoPlayer1.classList.add('player_red-active');
     pointerPlayer1.classList.add('player__pointer_active_red');
   } else
@@ -124,7 +125,7 @@ function appendingPointValue(target, elem) {
     }
   } else {
     target.classList.add('gamefield__point_wrong');
-    setTimeout(function(){
+    setTimeout(function() {
       target.classList.remove('gamefield__point_wrong');
     }, 1000);
   }
@@ -137,7 +138,6 @@ function checkWinner() {
   if (!(onWin(player1) || onWin(player2))) {
     if ((document.querySelectorAll('#player1').length + document.querySelectorAll('#player2').length) == 9) {
       showFair();
-      round++;
       resetGame();
     }
   }
@@ -147,7 +147,7 @@ function onWin(player) {
   var winingLines = ['123', '147', '159', '258', '357', '369', '456', '789'];
   var exit = false;
   label1:
-    for(var i = 0; i < winingLines.length; i++) {
+    for (var i = 0; i < winingLines.length; i++) {
       for (var j = 0; j < winingLines[i].length; j++) {
         if (player.picks.includes(winingLines[i][j])) {
           exit = true;
@@ -157,7 +157,7 @@ function onWin(player) {
           break;
         }
       }
-      if(winScenario(player, exit, winingLines[i])){
+      if (winScenario(player, exit, winingLines[i])) {
         round++;
         break label1;
       }
@@ -193,8 +193,8 @@ function winScenario(player, exit, line) {
     player.score += 1;
     resetScore(player);
     resetGame();
-    setTimeout(function(){
-        showRound();
+    setTimeout(function() {
+      showRound();
     }, 2200);
     return exit;
   }
@@ -221,27 +221,29 @@ function resetGame() {
   });
 }
 
-function showRound(){
+function showRound() {
   var roundField = document.querySelector('.round-counter');
-  if(roundField.firstChild){
+  if (roundField.firstChild) {
     roundField.removeChild(roundField.firstChild);
   }
   var roundValue = document.createTextNode("round " + round);
   roundField.appendChild(roundValue);
 }
 
-function showFair(){
+function showFair() {
   var fairTitle = document.querySelector('.fair-attention');
   fairTitle.classList.add('fair-attention_animate');
-  setTimeout(function(){
+  setTimeout(function() {
     fairTitle.classList.remove('fair-attention_animate');
   }, 2000);
   round++;
   showRound();
 }
 
-function showWinner(winner){
+function showWinner(winner) {
   var winnerElem = document.querySelector('#info-' + winner.name);
   winnerElem.classList.add('winner');
-  setTimeout(function(){winnerElem.classList.remove('winner')}, 1500);
+  setTimeout(function() {
+    winnerElem.classList.remove('winner')
+  }, 1500);
 }
