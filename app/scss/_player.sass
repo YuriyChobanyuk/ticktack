@@ -3,6 +3,13 @@
   display: flex
   align-items: center
   justify-content: center
+  transition: .4s ease all
+  position: relative
+  overflow: hidden
+  width: 350px
+  height: 180px
+  margin: auto
+  border-radius: 7px
 
   &__name
     font-size: 30px
@@ -16,12 +23,80 @@
 
   &_red
     color: red
+    background-color: hsl(7, 97%, 90%)
+    border: 2px solid hsl(7, 97%, 62%)
 
   &_red-active
-    background-color: #feb2a7
+    background-color: hsl(7, 97%, 82%)
 
   &_blue
     color: blue
+    background-color: hsl(228, 100%, 92%)
+    border: 2px solid hsl(228, 100%, 64%)
 
   &_blue-active
-    background-color: #b9c6ff
+    background-color: hsl(228, 100%, 86%)
+
+
+  &__pointer
+    position: absolute
+    width: 127px
+    height: 127px
+    transform: rotate(45deg)
+    transition: .3s ease all
+
+  &__pointer_active_red
+    right: -64px !important
+
+  &__pointer_active_blue
+    left: -64px !important
+
+
+.player__pointer[data-color="red"]
+  background-color: hsl(7, 97%, 72%)
+  right: -170px
+
+.player__pointer[data-color="blue"]
+  background-color: hsl(228, 100%, 76%)
+  left: -170px
+
+
+.winner
+  background-color: hsl(21, 100%, 94%)
+  animation: winnerAnim .5s both
+  animation-iteration-count: 3
+  animation-timing-function: linear
+
+@keyframes winnerAnim
+
+  0%, 100%
+    transform: scale(1.02)
+    background-color: hsl(21, 100%, 92%)
+
+  10%, 90%
+    transform: scale(1.04)
+    background-color: hsl(21, 100%, 90%)
+
+  15%, 85%
+    transform: scale(1.06)
+    background-color: hsl(21, 100%, 88%)
+
+  20%, 80%
+    transform: scale(1.08)
+    background-color: hsl(21, 100%, 86%)
+
+  27%, 72%
+    transform: scale(1.1)
+    background-color: hsl(21, 100%, 84%)
+
+  35%, 65%
+    transform: scale(1.12)
+    background-color: hsl(21, 100%, 82%)
+
+  57%, 43%
+    transform: scale(1.14)
+    background-color: hsl(21, 100%, 80%)
+
+  50%
+    transform: scale(1.15)
+    background-color: hsl(21, 100%, 78%)

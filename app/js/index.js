@@ -3,7 +3,7 @@ var round = 1;
 
 class Player {
   constructor(name, turn) {
-    this.name = name;
+    this.name = name || "Player";
     this.score = 0;
     this.turn = turn;
     this.picks = "";
@@ -22,6 +22,10 @@ class Player {
 }
 var player1 = new Player("player1", true);
 var player2 = new Player("player2", false);
+var infoPlayer1 = document.getElementById('info-player1');
+var infoPlayer2 = document.getElementById('info-player2');
+var pointerPlayer1 = document.querySelector('.player__pointer[data-color="red"]');
+var pointerPlayer2 = document.querySelector('.player__pointer[data-color="blue"]');
 
 
 onStart();
@@ -62,6 +66,7 @@ function setName(name, player) {
 }
 
 function initGame() {
+  setActiveBG(true);
   [].forEach.call(points, function(point) {
     point.addEventListener('click', function() {
       var pointValue = document.createElement('i');
@@ -88,13 +93,22 @@ function setActiveShield(timeout){
   setTimeout(function(){shield.classList.remove('shield-active')}, timeout);
 }
 
-function setActiveBG() {
+function setActiveBG(init) {
+  if(init){
+    infoPlayer1.classList.add('player_red-active');
+    pointerPlayer1.classList.add('player__pointer_active_red');
+  } else
   if (!player1.turn) {
-    document.getElementById('info-player1').classList.add('player_red-active');
-    document.getElementById('info-player2').classList.remove('player_blue-active');
+    infoPlayer1.classList.add('player_red-active');
+    infoPlayer2.classList.remove('player_blue-active');
+    pointerPlayer1.classList.add('player__pointer_active_red');
+    pointerPlayer2.classList.remove('player__pointer_active_blue');
+
   } else {
-    document.getElementById('info-player2').classList.add('player_blue-active');
-    document.getElementById('info-player1').classList.remove('player_red-active');
+    infoPlayer2.classList.add('player_blue-active');
+    infoPlayer1.classList.remove('player_red-active');
+    pointerPlayer2.classList.add('player__pointer_active_blue');
+    pointerPlayer1.classList.remove('player__pointer_active_red');
   }
 }
 
@@ -175,6 +189,7 @@ function winScenario(player, exit, line) {
     lineArray.forEach(function(index) {
       points[index - 1].classList.add('gamefield__point_winner');
     });
+    showWinner(player);
     player.score += 1;
     resetScore(player);
     resetGame();
@@ -223,4 +238,10 @@ function showFair(){
   }, 2000);
   round++;
   showRound();
+}
+
+function showWinner(winner){
+  var winnerElem = document.querySelector('#info-' + winner.name);
+  winnerElem.classList.add('winner');
+  setTimeout(function(){winnerElem.classList.remove('winner')}, 1500);
 }
