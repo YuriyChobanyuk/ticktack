@@ -1,0 +1,29 @@
+%interface-btn
+  width: 200px
+  height: 100px
+  background-image: linear-gradient(#e74a4a, #d64222, rgb(150, 0, 0))
+  font-size: 40px
+  color: white
+  margin: auto
+  display: flex
+  justify-content: center
+  align-items: center
+  text-transform: uppercase
+  border-radius: 10px
+  cursor: pointer
+  transition: .2s ease all
+
+  &:hover
+    transform: scale(1.1)
+
+.start
+  @extend %interface-btn
+
+.interface
+  margin: 15px 0px
+
+.reset
+  @extend %interface-btn
+
+.btn-inactive
+  display: none !important

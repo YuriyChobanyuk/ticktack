@@ -11,3 +11,53 @@ body
   min-height: 100%
 
 @import 'grid'
+
+
+.container
+  width: 100%
+  height: 800px
+  background-color: lightblue
+  font-family: 'Arial', sans-serif
+  padding-bottom: 30px
+
+.title
+  position: relative
+  text-align: center
+  text-transform: uppercase
+  font-size: 40px
+  padding: 20px
+  background-image: linear-gradient(45deg, rgb(133, 215, 126), rgb(125, 154, 179))
+
+.round-counter
+  position: absolute
+  top: calc(50% - 16px)
+  right: 0
+  width: 200px
+  height: 100%
+  font-size: 30px
+  text-transform: uppercase
+  color: green
+
+.fair-attention
+  font-family: 'Modak', cursive
+  text-transform: uppercase
+  color: brown
+  position: fixed
+  font-size: 140px
+  top: -400px
+  left: calc(50% - 115px)
+  z-index: 3
+
+.fair-attention_animate
+  animation-name: dropFromTop
+  animation-duration: 3s
+
+@keyframes dropFromTop
+
+  50%
+    top: calc(50% - 70px)
+
+@import 'player'
+@import 'gamefield'
+@import 'start'
+.gamefield

@@ -1,0 +1,75 @@
+.gamefield
+  position: relative
+  display: flex
+  flex-wrap: wrap
+  width: $gamefield-size
+  height: $gamefield-size
+  background-color: white
+  margin: auto
+  margin-top: 20px
+  border-radius: 5px
+  align-items: center
+  justify-content: space-around
+  padding: 5px
+  background-color: #dff9fa
+
+  &__point
+    background-color: white
+    width: $gamefield-point
+    height: $gamefield-point
+    max-width: 33.33%
+    border-radius: 5px
+    border: 2px solid darkgrey
+    transition: .2s ease all
+    font-size: 100px
+    display: flex
+    justify-content: center
+    align-items: center
+    cursor: pointer
+
+    &_winner
+      transform: scale(1.05)
+      background-color: yellow !important
+      border: 3px solid fuchsia !important
+    // &:hover
+    //   transform: scale(1.1)
+
+    .fa-times
+      color: red
+      transform: scale(1.2)
+
+    .fa-circle
+      color: blue
+
+.shield
+  position: absolute
+  width: $gamefield-size
+  height: $gamefield-size
+  background-color: rgba(255, 255, 254, 0.01)
+  z-index: -1
+
+.shield-active
+  z-index: 2
+
+.gamefield__point_wrong
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both
+  transform: translate3d(0, 0, 0)
+  backface-visibility: hidden
+  perspective: 1000px
+
+
+@keyframes shake
+  10%, 90%
+    transform: translate3d(-1px, 0, 0)
+
+
+  20%, 80%
+    transform: translate3d(2px, 0, 0)
+
+
+  30%, 50%, 70%
+    transform: translate3d(-4px, 0, 0)
+
+
+  40%, 60%
+    transform: translate3d(4px, 0, 0)

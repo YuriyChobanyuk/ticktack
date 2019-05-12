@@ -1,4 +1,4 @@
-var gulp = require('gulp')
+var gulp = require('gulp');
 var pug = require('gulp-pug');
 var sass = require('gulp-sass');
 var cleancss = require('gulp-cleancss');
