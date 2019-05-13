@@ -6,11 +6,10 @@
   height: $gamefield-size
   background-color: white
   margin: auto
-  margin-top: 20px
   border-radius: 5px
+  padding: 5px
   align-items: center
   justify-content: space-around
-  padding: 5px
   background-color: #dff9fa
   opacity: 0.9
   perspective: 1000px
@@ -20,6 +19,8 @@
     background-color: white
     width: $gamefield-point
     height: $gamefield-point
+    max-width: $gamefield-point
+    max-height: $gamefield-point
     max-width: 33.33%
     border-radius: 5px
     border: 2px solid darkgrey
@@ -39,7 +40,7 @@
 
     .fa-times
       color: red
-      transform: scale(1.2)
+      font-size: 120px
 
     .fa-circle
       color: blue
@@ -47,7 +48,8 @@
     i
       animation-name: appear
       animation-duration: .2s
-      animation-timing-function: ease-out
+      animation-timing-function: ease
+
 
 .shield
   position: absolute
@@ -83,7 +85,8 @@
     transform: translate3d(4px, 0, 0)
 
 @keyframes appear
-  from
-    transform: scale(.5)
-  to
+  0%
+    transform: scale(.3)
+
+  100%
     transform: scale(1)
