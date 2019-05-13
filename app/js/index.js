@@ -27,17 +27,17 @@ var infoPlayer2 = document.getElementById('info-player2');
 var pointerPlayer1 = document.querySelector('.player__pointer[data-color="red"]');
 var pointerPlayer2 = document.querySelector('.player__pointer[data-color="blue"]');
 
-
+//setPointHover();
 onStart();
 onReset();
 
 function onStart() {
   var start = document.querySelector('.start');
   start.addEventListener('click', function() {
-    var name1 = prompt("Player 1 name: ", "John");
+    var name1 = prompt("Player 1 name: ", "John") || "SomeGuy";
     setName(name1, document.querySelector('#info-player1'));
     player1.realName = name1;
-    var name2 = prompt("Player 2 name: ", "Layla");
+    var name2 = prompt("Player 2 name: ", "Layla")  || "OtherGuy";
     setName(name2, document.querySelector('#info-player2'));
     player2.realName = name2;
     document.getElementById('info-player1').classList.add('player_red-active');
@@ -68,20 +68,28 @@ function initGame() {
   setActiveBG(true);
   [].forEach.call(points, function(point) {
     point.addEventListener('click', function() {
-      var pointValue = document.createElement('i');
-      if (player1.turn) {
-        pointValue.classList.add('fas', 'fa-times');
-        point.id = player1.name;
+      if(!point.firstChild){
+        var pointValue = document.createElement('i');
+        if (player1.turn) {
+          pointValue.classList.add('fas', 'fa-times');
+          point.id = player1.name;
+        } else
+        {
+          pointValue.classList.add('far', 'fa-circle');
+          point.id = player2.name;
+        }
+        setActiveShield(100);
+        setActiveBG();
+        appendingPointValue(point, pointValue);
+        setTimeout(function() {
+          checkWinner()
+        }, 200);
       } else {
-        pointValue.classList.add('far', 'fa-circle');
-        point.id = player2.name;
+        point.classList.add('gamefield__point_wrong');
+        setTimeout(function() {
+          point.classList.remove('gamefield__point_wrong');
+        }, 1000);
       }
-      setActiveShield(100);
-      setActiveBG();
-      appendingPointValue(point, pointValue);
-      setTimeout(function() {
-        checkWinner()
-      }, 200);
     })
   })
 }
@@ -123,11 +131,6 @@ function appendingPointValue(target, elem) {
       player2.turn = false;
       player1.turn = true;
     }
-  } else {
-    target.classList.add('gamefield__point_wrong');
-    setTimeout(function() {
-      target.classList.remove('gamefield__point_wrong');
-    }, 1000);
   }
 }
 
@@ -247,3 +250,18 @@ function showWinner(winner) {
     winnerElem.classList.remove('winner')
   }, 1500);
 }
+
+// function setPointHover(){
+//   [].forEach.call(points, function(point){
+//     point.addEventListener('mousemove', function(event){
+//       var halfWidth = point.offsetWidth / 2;
+//       var halfHeight = point.offsetHeight / 2;
+//       point.style.transform = 'rotateX(' + ((event.offsetY - halfHeight) / 3) + 'deg) ' +
+//       'rotateY('+ ((event.offsetX - halfWidth) / 3) +'deg)';
+//     });
+//     point.addEventListener('mouseout', function(){
+//       point.style.transform = 'rotate(0deg)';
+//     })
+//   })
+//
+// }
